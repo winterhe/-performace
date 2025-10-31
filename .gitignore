@@ -1,0 +1,61 @@
+### Operating System Files ###
+.DS_Store
+Thumbs.db
+*.sw?
+.#*
+*#
+*~
+*.sublime-*
+.run/
+desktop.ini
+**/desktop.ini
+
+### Build Artifacts ###
+.gradle/
+target/
+bin/
+git.properties
+dependency-reduced-pom.xml
+!.mvn/wrapper/maven-wrapper.jar
+
+HELP.md
+**/target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+.arcconfig
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+
+### LOG ###
+logs/
+
+### Runtime ###
+/log
+node_modules
+src/config/*.tmp
+npm-debug.log
