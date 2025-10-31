@@ -1,0 +1,88 @@
+1, java21 default GC(G1GC)
+java -jar .\performace-0.0.1-SNAPSHOT.jar
+
+Java test virtual thread start cost
+Java current memory usage: 27524 KB
+Java create 100000 virtual thread time cost: 139 ms
+Java current memory usage: 48 MB
+
+Java CPU Intensive task Fibonacci recursion calculate
+Java calculate result: 8639872297
+Java calculate cost: 1213 ms
+Java current memory usage: 63 MB
+=== GC statistics ===
+G1 Young Generation: counts = 6, times = 28 ms
+G1 Concurrent GC: counts = 4, times = 3 ms
+G1 Old Generation: counts = 0, times = 0 ms
+total GC counts: 10, total time cost: 31 ms
+
+Java CPU Intensive task Fibonacci iterate calculate
+Java calculate result: 13564383025
+Java calculate cost: 20 ms
+Java current memory usage: 48 MB
+=== GC statistics ===
+G1 Young Generation: counts = 8, times = 35 ms
+G1 Concurrent GC: counts = 4, times = 3 ms
+G1 Old Generation: counts = 0, times = 0 ms
+total GC counts: 12, total time cost: 38 ms
+
+
+java -XX:+UseG1GC -Xms4g -Xmx4g -Xlog:gc*:file=gc.log:time,uptime,pid,tags -jar .\performace-0.0.1-SNAPSHOT.jar
+
+Java test virtual thread start cost
+Java current memory usage: 56659 KB
+Java create 100000 virtual thread time cost: 116 ms
+Java current memory usage: 128 MB
+
+Java CPU Intensive task Fibonacci recursion calculate
+Java calculate result: 8639872297
+Java calculate cost: 1242 ms
+Java current memory usage: 150 MB
+=== GC statistics ===
+G1 Young Generation: counts = 1, times = 6 ms
+G1 Concurrent GC: counts = 2, times = 3 ms
+G1 Old Generation: counts = 0, times = 0 ms
+total GC counts: 3, total time cost: 9 ms
+
+Java CPU Intensive task Fibonacci iterate calculate
+Java calculate result: 13564383025
+Java calculate cost: 11 ms
+Java current memory usage: 171 MB
+=== GC statistics ===
+G1 Young Generation: counts = 1, times = 6 ms
+G1 Concurrent GC: counts = 2, times = 3 ms
+G1 Old Generation: counts = 0, times = 0 ms
+total GC counts: 3, total time cost: 9 ms
+
+2, java21 ZGC
+java -XX:+UseZGC -Xms4g -Xmx4g -Xlog:gc*:file=gc.log:time,uptime,pid,tags -jar .\performace-0.0.1-SNAPSHOT.jar
+
+Java test virtual thread start cost
+Java current memory usage: 75776 KB
+Java create 100000 virtual thread time cost: 97 ms
+Java current memory usage: 184 MB
+
+Java CPU Intensive task Fibonacci recursion calculate
+Java calculate result: 8639872297
+Java calculate cost: 1193 ms
+Java current memory usage: 214 MB
+=== GC statistics ===
+ZGC Minor Cycles: counts = 0, times = 0 ms
+ZGC Minor Pauses: counts = 0, times = 0 ms
+ZGC Major Cycles: counts = 1, times = 43 ms
+ZGC Major Pauses: counts = 5, times = 1 ms
+total GC counts: 6, total time cost: 44 ms
+
+Java CPU Intensive task Fibonacci iterate calculate
+Java calculate result: 13564383025
+Java calculate cost: 49 ms
+Java current memory usage: 244 MB
+=== GC statistics ===
+ZGC Minor Cycles: counts = 0, times = 0 ms
+ZGC Minor Pauses: counts = 0, times = 0 ms
+ZGC Major Cycles: counts = 1, times = 43 ms
+ZGC Major Pauses: counts = 5, times = 1 ms
+total GC counts: 6, total time cost: 44 ms
+
+
+2, java25 default GC(G1GC)
