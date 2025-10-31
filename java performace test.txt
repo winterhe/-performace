@@ -85,4 +85,173 @@ ZGC Major Pauses: counts = 5, times = 1 ms
 total GC counts: 6, total time cost: 44 ms
 
 
-2, java25 default GC(G1GC)
+3, java25 default GC(G1GC)
+java -XX:+UseG1GC -Xms4g -Xmx4g -Xlog:gc*:file=gc.log:time,uptime,pid,tags -jar .\performace-0.0.1-SNAPSHOT.jar
+
+Java test virtual thread start cost
+Java current memory usage: 56595 KB
+Java create 100000 virtual thread time cost: 102 ms
+Java current memory usage: 128 MB
+
+Java CPU Intensive task Fibonacci recursion calculate
+Java calculate result: 8639872297
+Java calculate cost: 1193 ms
+Java current memory usage: 150 MB
+=== GC statistics ===
+G1 Young Generation: counts = 1, times = 6 ms
+G1 Concurrent GC: counts = 2, times = 1 ms
+G1 Old Generation: counts = 0, times = 0 ms
+total GC counts: 3, total time cost: 7 ms
+
+Java CPU Intensive task Fibonacci iterate calculate
+Java calculate result: 13564383025
+Java calculate cost: 15 ms
+Java current memory usage: 172 MB
+=== GC statistics ===
+G1 Young Generation: counts = 1, times = 6 ms
+G1 Concurrent GC: counts = 2, times = 1 ms
+G1 Old Generation: counts = 0, times = 0 ms
+total GC counts: 3, total time cost: 7 ms
+
+3.1, java25 default GC(G1GC) compact header
+java -XX:+UseG1GC -XX:+UseCompactObjectHeaders -Xms4g -Xmx4g -Xlog:gc*:file=gc.log:time,uptime,pid,tags -jar .\performace-0.0.1-SNAPSHOT.jar
+
+Java test virtual thread start cost
+Java current memory usage: 54551 KB
+Java create 100000 virtual thread time cost: 112 ms
+Java current memory usage: 120 MB
+
+Java CPU Intensive task Fibonacci recursion calculate
+Java calculate result: 8639872297
+Java calculate cost: 1390 ms
+Java current memory usage: 139 MB
+=== GC statistics ===
+G1 Young Generation: counts = 1, times = 6 ms
+G1 Concurrent GC: counts = 2, times = 1 ms
+G1 Old Generation: counts = 0, times = 0 ms
+total GC counts: 3, total time cost: 7 ms
+
+Java CPU Intensive task Fibonacci iterate calculate
+Java calculate result: 13564383025
+Java calculate cost: 18 ms
+Java current memory usage: 158 MB
+=== GC statistics ===
+G1 Young Generation: counts = 1, times = 6 ms
+G1 Concurrent GC: counts = 2, times = 1 ms
+G1 Old Generation: counts = 0, times = 0 ms
+total GC counts: 3, total time cost: 7 ms
+
+4, java25 ZGC
+java -XX:+UseZGC -Xms4g -Xmx4g -Xlog:gc*:file=gc.log:time,uptime,pid,tags -jar .\performace-0.0.1-SNAPSHOT.jar
+
+Java test virtual thread start cost
+Java current memory usage: 75776 KB
+Java create 100000 virtual thread time cost: 121 ms
+Java current memory usage: 178 MB
+
+Java CPU Intensive task Fibonacci recursion calculate
+Java calculate result: 8639872297
+Java calculate cost: 1227 ms
+Java current memory usage: 208 MB
+=== GC statistics ===
+ZGC Minor Cycles: counts = 0, times = 0 ms
+ZGC Minor Pauses: counts = 0, times = 0 ms
+ZGC Major Cycles: counts = 1, times = 39 ms
+ZGC Major Pauses: counts = 5, times = 0 ms
+total GC counts: 6, total time cost: 39 ms
+
+Java CPU Intensive task Fibonacci iterate calculate
+Java calculate result: 13564383025
+Java calculate cost: 48 ms
+Java current memory usage: 238 MB
+=== GC statistics ===
+ZGC Minor Cycles: counts = 0, times = 0 ms
+ZGC Minor Pauses: counts = 0, times = 0 ms
+ZGC Major Cycles: counts = 1, times = 39 ms
+ZGC Major Pauses: counts = 5, times = 0 ms
+total GC counts: 6, total time cost: 39 ms
+
+4.1, java25 ZGC compact header
+java -XX:+UseZGC -XX:+UseCompactObjectHeaders -Xms4g -Xmx4g -Xlog:gc*:file=gc.log:time,uptime,pid,tags -jar .\performace-0.0.1-SNAPSHOT.jar
+
+Java test virtual thread start cost
+Java current memory usage: 75776 KB
+Java create 100000 virtual thread time cost: 75 ms
+Java current memory usage: 184 MB
+
+Java CPU Intensive task Fibonacci recursion calculate
+Java calculate result: 8639872297
+Java calculate cost: 1366 ms
+Java current memory usage: 212 MB
+=== GC statistics ===
+ZGC Minor Cycles: counts = 0, times = 0 ms
+ZGC Minor Pauses: counts = 0, times = 0 ms
+ZGC Major Cycles: counts = 1, times = 39 ms
+ZGC Major Pauses: counts = 5, times = 0 ms
+total GC counts: 6, total time cost: 39 ms
+
+Java CPU Intensive task Fibonacci iterate calculate
+Java calculate result: 13564383025
+Java calculate cost: 45 ms
+Java current memory usage: 240 MB
+=== GC statistics ===
+ZGC Minor Cycles: counts = 0, times = 0 ms
+ZGC Minor Pauses: counts = 0, times = 0 ms
+ZGC Major Cycles: counts = 1, times = 39 ms
+ZGC Major Pauses: counts = 5, times = 0 ms
+total GC counts: 6, total time cost: 39 ms
+
+5, java25 Generational Shenandoah
+java -XX:+UseShenandoahGC -XX:ShenandoahGCMode=generational -Xms4g -Xmx4g -Xlog:gc*:file=gc.log:time,uptime,pid,tags -jar .\performace-0.0.1-SNAPSHOT.jar
+
+Java test virtual thread start cost
+Java current memory usage: 87048 KB
+Java create 100000 virtual thread time cost: 105 ms
+Java current memory usage: 189 MB
+
+Java CPU Intensive task Fibonacci recursion calculate
+Java calculate result: 8639872297
+Java calculate cost: 1186 ms
+Java current memory usage: 211 MB
+=== GC statistics ===
+Shenandoah Pauses: counts = 4, times = 0 ms
+Shenandoah Cycles: counts = 1, times = 24 ms
+total GC counts: 5, total time cost: 24 ms
+
+Java CPU Intensive task Fibonacci iterate calculate
+Java calculate result: 13564383025
+Java calculate cost: 18 ms
+Java current memory usage: 233 MB
+=== GC statistics ===
+Shenandoah Pauses: counts = 4, times = 0 ms
+Shenandoah Cycles: counts = 1, times = 24 ms
+total GC counts: 5, total time cost: 24 ms
+
+
+5.1, java25 Generational Shenandoah compact header
+java -XX:+UseShenandoahGC -XX:ShenandoahGCMode=generational -XX:+UseCompactObjectHeaders -Xms4g -Xmx4g -Xlog:gc*:file=gc.log:time,uptime,pid,tags -jar .\performace-0.0.1-SNAPSHOT.jar
+
+
+Java test virtual thread start cost
+Java current memory usage: 81920 KB
+Java create 100000 virtual thread time cost: 93 ms
+Java current memory usage: 182 MB
+
+Java CPU Intensive task Fibonacci recursion calculate
+Java calculate result: 8639872297
+Java calculate cost: 1384 ms
+Java current memory usage: 200 MB
+=== GC statistics ===
+Shenandoah Pauses: counts = 4, times = 0 ms
+Shenandoah Cycles: counts = 1, times = 13 ms
+total GC counts: 5, total time cost: 13 ms
+
+Java CPU Intensive task Fibonacci iterate calculate
+Java calculate result: 13564383025
+Java calculate cost: 24 ms
+Java current memory usage: 218 MB
+=== GC statistics ===
+Shenandoah Pauses: counts = 4, times = 0 ms
+Shenandoah Cycles: counts = 1, times = 13 ms
+total GC counts: 5, total time cost: 13 ms
+
