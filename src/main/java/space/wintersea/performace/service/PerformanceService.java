@@ -27,58 +27,60 @@ public class PerformanceService implements ApplicationRunner {
   }
 
   private void performanceProcedure(ApplicationArguments args) {
-    virtualThreadStartCostTest();
+    virtualThreadStartCostTest(1);
+    virtualThreadStartCostTest(10);
 
-    System.out.println();
-    System.out.println("Java CPU Intensive task Fibonacci recursion calculate");
-    cpuIntensiveTaskTest();
+    cpuIntensiveTaskTest(1);
+    cpuIntensiveTaskTest(10);
 
 
-    System.out.println();
-    System.out.println("Java CPU Intensive task Fibonacci iterate calculate");
-    cpuIntensiveTaskTest02();
-
+    cpuIntensiveTaskTest02(1);
+    cpuIntensiveTaskTest02(10);
 
   }
 
-  private void virtualThreadStartCostTest() {
+  private void virtualThreadStartCostTest(int loop) {
     int taskCount = 100_000;
     long used = 0;
     long start = 0;
     long end = 0;
     // test virtual thread start cost
     used = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+    System.out.println("-------loop: " + loop + " -----");
     System.out.println("Java test virtual thread start cost");
     // 1024 (kB)
     long usage = used >> 10;
     System.out.println("Java current memory usage: " + usage + " KB");
 
     start = Instant.now().toEpochMilli();
-    CountDownLatch countDownLatch = new CountDownLatch(taskCount);
-    try(ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
-      for (int i = 0; i < taskCount; i++) {
-        final int id = i;
-        executor.submit(() -> {
-          try {
-            return id;
-          } finally {
-            countDownLatch.countDown();
-          }
-        });
+
+    for (int idx = 0; idx < loop; idx++) {
+      CountDownLatch countDownLatch = new CountDownLatch(taskCount);
+      try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        for (int i = 0; i < taskCount; i++) {
+          final int id = i;
+          executor.submit(() -> {
+            try {
+              return id;
+            } finally {
+              countDownLatch.countDown();
+            }
+          });
+        }
+        countDownLatch.await();
+      } catch (Exception e) {
+        System.out.println("Exception: " + e.getMessage());
       }
-      countDownLatch.await();
-    } catch (Exception e) {
-      System.out.println("Exception: " + e.getMessage());
     }
 
     end = Instant.now().toEpochMilli();
-    System.out.println("Java create " + taskCount + " virtual thread time cost: " + (end - start) + " ms");
+    System.out.println("Java create " + taskCount + " virtual thread time cost: " + (end - start)/loop + " ms");
     used = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
     usage = used >> 20;
     System.out.println("Java current memory usage: " + usage + " MB");
   }
 
-  private void cpuIntensiveTaskTest() {
+  private void cpuIntensiveTaskTest(int loop) {
     int taskCount = 50_000;
     long used = 0;
     long start = 0;
@@ -87,26 +89,33 @@ public class PerformanceService implements ApplicationRunner {
 
     AtomicLong total = new AtomicLong();
     start = Instant.now().toEpochMilli();
-    CountDownLatch countDownLatch = new CountDownLatch(taskCount);
-    try(ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
-      for (int i = 0; i < taskCount; i++) {
-        int finalI1 = i % 33;
-        executor.submit(() -> {
-          try {
-            total.getAndAdd(fibonacci(finalI1));
-          } finally {
-            countDownLatch.countDown();
-          }
-        });
+
+    System.out.println();
+    System.out.println("Java CPU Intensive task Fibonacci recursion calculate");
+    System.out.println("-------loop: " + loop + " -----");
+
+    for (int idx = 0; idx < loop; idx++) {
+      CountDownLatch countDownLatch = new CountDownLatch(taskCount);
+      try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        for (int i = 0; i < taskCount; i++) {
+          int finalI1 = i % 33;
+          executor.submit(() -> {
+            try {
+              total.getAndAdd(fibonacci(finalI1));
+            } finally {
+              countDownLatch.countDown();
+            }
+          });
+        }
+        countDownLatch.await();
+      } catch (Exception e) {
+        System.out.println("Exception: " + e.getMessage());
       }
-      countDownLatch.await();
-    } catch (Exception e) {
-      System.out.println("Exception: " + e.getMessage());
     }
 
     end = Instant.now().toEpochMilli();
     System.out.println("Java calculate result: " + total.get());
-    System.out.println("Java calculate cost: " + (end - start) + " ms");
+    System.out.println("Java calculate cost: " + (end - start)/loop + " ms");
     used = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
     usage = used >> 20;
     System.out.println("Java current memory usage: " + usage + " MB");
@@ -114,7 +123,7 @@ public class PerformanceService implements ApplicationRunner {
 
   }
 
-  private void cpuIntensiveTaskTest02() {
+  private void cpuIntensiveTaskTest02(int loop) {
     int taskCount = 50_000;
     long used = 0;
     long start = 0;
@@ -123,26 +132,33 @@ public class PerformanceService implements ApplicationRunner {
 
     AtomicLong total = new AtomicLong();
     start = Instant.now().toEpochMilli();
-    CountDownLatch countDownLatch = new CountDownLatch(taskCount);
-    try(ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
-      for (int i = 0; i < taskCount; i++) {
-        int finalI1 = i % 34;
-        executor.submit(() -> {
-          try {
-            total.getAndAdd(fibonacci02(finalI1));
-          } finally {
-            countDownLatch.countDown();
-          }
-        });
+
+    System.out.println();
+    System.out.println("Java CPU Intensive task Fibonacci iterate calculate");
+    System.out.println("-------loop: " + loop + " -----");
+
+    for (int idx = 0; idx < loop; idx++) {
+      CountDownLatch countDownLatch = new CountDownLatch(taskCount);
+      try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        for (int i = 0; i < taskCount; i++) {
+          int finalI1 = i % 34;
+          executor.submit(() -> {
+            try {
+              total.getAndAdd(fibonacci02(finalI1));
+            } finally {
+              countDownLatch.countDown();
+            }
+          });
+        }
+        countDownLatch.await();
+      } catch (Exception e) {
+        System.out.println("Exception: " + e.getMessage());
       }
-      countDownLatch.await();
-    } catch (Exception e) {
-      System.out.println("Exception: " + e.getMessage());
     }
 
     end = Instant.now().toEpochMilli();
     System.out.println("Java calculate result: " + total.get());
-    System.out.println("Java calculate cost: " + (end - start) + " ms");
+    System.out.println("Java calculate cost: " + (end - start)/loop + " ms");
     used = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
     usage = used >> 20;
     System.out.println("Java current memory usage: " + usage + " MB");
