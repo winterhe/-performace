@@ -11,12 +11,12 @@
 
 	<groupId>space.wintersea</groupId>
 	<artifactId>performace</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>21-test1</version>
 	<name>performace</name>
 	<description>performaceproject for Spring Boot</description>
 
 	<properties>
-		<java.version>25</java.version>
+		<java.version>21</java.version>
 	</properties>
 
 	<dependencies>
