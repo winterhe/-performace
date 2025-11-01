@@ -114,7 +114,7 @@ public class PerformanceService implements ApplicationRunner {
     }
 
     end = Instant.now().toEpochMilli();
-    System.out.println("Java calculate result: " + total.get());
+    System.out.println("Java calculate result: " + total.get()/loop);
     System.out.println("Java calculate cost: " + (end - start)/loop + " ms");
     used = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
     usage = used >> 20;
@@ -157,7 +157,7 @@ public class PerformanceService implements ApplicationRunner {
     }
 
     end = Instant.now().toEpochMilli();
-    System.out.println("Java calculate result: " + total.get());
+    System.out.println("Java calculate result: " + total.get()/loop);
     System.out.println("Java calculate cost: " + (end - start)/loop + " ms");
     used = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
     usage = used >> 20;
