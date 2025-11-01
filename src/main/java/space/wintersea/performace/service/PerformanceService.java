@@ -23,6 +23,11 @@ public class PerformanceService implements ApplicationRunner {
       System.out.println("-----warmup JIT finished----");
       // force gc, reduce effect of warmup
       System.gc();
+      try {
+        Thread.sleep(100);
+      } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+      }
       performanceProcedure();
     } catch (Exception e) {
       System.out.println("\n\n" + e.getMessage());
