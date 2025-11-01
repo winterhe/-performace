@@ -1,3 +1,15 @@
-spring:
-  application:
-    name: performace
+
+server:
+  port: '8185'
+  shutdown: graceful
+  maxHttpHeaderSize: 20480
+  undertow:
+    bufferSize: 1024
+    maxHttpPostSize: 22020096
+    threads:
+      io: 16
+      worker: 128
+  forward-headers-strategy: framework
+
+# forbidden all log output
+logging.level.root: OFF
