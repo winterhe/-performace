@@ -18,7 +18,10 @@ public class PerformanceService implements ApplicationRunner {
   @Override
   public void run(ApplicationArguments args) {
     try {
-      performanceProcedure(args);
+      System.out.println("-----warmup JIT start----");
+      performanceProcedure_warmupJit();
+      System.out.println("-----warmup JIT finished----");
+      performanceProcedure();
     } catch (Exception e) {
       System.out.println("\n\n" + e.getMessage());
     }
@@ -26,21 +29,39 @@ public class PerformanceService implements ApplicationRunner {
     exitApp();
   }
 
-  private void performanceProcedure(ApplicationArguments args) {
-    virtualThreadStartCostTest(1);
-    virtualThreadStartCostTest(10);
+  private void performanceProcedure_warmupJit() {
+    int taskCount = 10_000;
+    virtualThreadStartCostTest(3, taskCount);
 
-    cpuIntensiveTaskTest(1);
-    cpuIntensiveTaskTest(10);
+    cpuIntensiveTaskTest(3, taskCount);
+
+    cpuIntensiveTaskTest02(3, taskCount);
+
+    // should pause, let JIT have time to compile
+    try {
+      Thread.sleep(50);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
 
-    cpuIntensiveTaskTest02(1);
-    cpuIntensiveTaskTest02(10);
+  private void performanceProcedure() {
+    int taskCount = 100_000;
+    int taskCount1 = 50_000;
+    virtualThreadStartCostTest(1, taskCount);
+    virtualThreadStartCostTest(10, taskCount);
+
+    cpuIntensiveTaskTest(1, taskCount1);
+    cpuIntensiveTaskTest(10, taskCount1);
+
+
+    cpuIntensiveTaskTest02(1, taskCount1);
+    cpuIntensiveTaskTest02(10, taskCount1);
 
   }
 
-  private void virtualThreadStartCostTest(int loop) {
-    int taskCount = 100_000;
+  private void virtualThreadStartCostTest(int loop, int taskCount) {
     long used = 0;
     long start = 0;
     long end = 0;
@@ -80,8 +101,7 @@ public class PerformanceService implements ApplicationRunner {
     System.out.println("Java current memory usage: " + usage + " MB");
   }
 
-  private void cpuIntensiveTaskTest(int loop) {
-    int taskCount = 50_000;
+  private void cpuIntensiveTaskTest(int loop, int taskCount) {
     long used = 0;
     long start = 0;
     long end = 0;
@@ -123,8 +143,7 @@ public class PerformanceService implements ApplicationRunner {
 
   }
 
-  private void cpuIntensiveTaskTest02(int loop) {
-    int taskCount = 50_000;
+  private void cpuIntensiveTaskTest02(int loop, int taskCount) {
     long used = 0;
     long start = 0;
     long end = 0;
