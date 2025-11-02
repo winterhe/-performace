@@ -1,6 +1,6 @@
 
 server:
-  port: '8185'
+  port: 8082
   shutdown: graceful
   maxHttpHeaderSize: 20480
   undertow:
@@ -11,5 +11,12 @@ server:
       worker: 128
   forward-headers-strategy: framework
 
+spring:
+  application:
+    name: ${APP_NAME:performance}
+  threads:
+    virtual:
+      enabled: true
+
 # forbidden all log output
-logging.level.root: OFF
+#logging.level.root: OFF

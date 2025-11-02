@@ -1,0 +1,22 @@
+/usr/lib/jvm/jdk-25.0.1+8/bin/java -XX:+UseShenandoahGC -XX:ShenandoahGCMode=generational -XX:+UseCompactObjectHeaders -Xms2g -Xmx2g -Xlog:gc*:file=gc.log:time,uptime,pid,tags -jar performace-25-test-tomcat.jar
+
+
+D:\tools\apache-jmeter-5.6.3\bin\jmeter -n -t ThreadTest01.jmx -l result_t0001.jtl -e -o reports
+
+
+E:\LocalDev\vm\project\jar\jmeter>D:\tools\apache-jmeter-5.6.3\bin\jmeter -n -t ThreadTest01.jmx -l result_t0001.jtl -e -o reports
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.thoughtworks.xstream.converters.reflection.SunUnsafeReflectionProvider (file:/D:/tools/apache-jmeter-5.6.3/lib/xstream-1.4.20.jar)
+WARNING: Please consider reporting this to the maintainers of class com.thoughtworks.xstream.converters.reflection.SunUnsafeReflectionProvider
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+Creating summariser <summary>
+Created the tree successfully using ThreadTest01.jmx
+Starting standalone test @ 2025 Nov 2 11:03:15 GMT+08:00 (1762052595881)
+Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+summary =   5000 in 00:00:08 =  648.2/s Avg:  3201 Min:   347 Max:  7571 Err:     0 (0.00%)
+Tidying up ...    @ 2025 Nov 2 11:03:23 GMT+08:00 (1762052603646)
+... end of run
