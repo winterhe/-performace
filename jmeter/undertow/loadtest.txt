@@ -1,0 +1,71 @@
+/usr/lib/jvm/jdk-25.0.1+8/bin/java -XX:+UseShenandoahGC -XX:ShenandoahGCMode=generational -XX:+UseCompactObjectHeaders -Xms2g -Xmx2g -Xlog:gc*:file=gc.log:time,uptime,pid,tags -jar performace-25-test-undertow.jar
+
+jmeter test plan:
+Test Plan: ThreadTest01 Test Plan
+Thread Group: Thread 5000 Test
+  Number of Threads(users): 5000
+  Ramp-up period(seconds):  1
+  Loop count: infinite
+    Same user on each iteration
+    Specify Thread lifetime:
+      Duration(seconds): 30
+
+
+
+D:\tools\apache-jmeter-5.6.3\bin\jmeter -n -t ThreadTest01.jmx -l result_t0001.jtl -e -o reports
+
+E:\LocalDev\vm\project\jar\jmeter>D:\tools\apache-jmeter-5.6.3\bin\jmeter -n -t ThreadTest01.jmx -l result_t0001.jtl -e -o reports
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.thoughtworks.xstream.converters.reflection.SunUnsafeReflectionProvider (file:/D:/tools/apache-jmeter-5.6.3/lib/xstream-1.4.20.jar)
+WARNING: Please consider reporting this to the maintainers of class com.thoughtworks.xstream.converters.reflection.SunUnsafeReflectionProvider
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+Creating summariser <summary>
+Created the tree successfully using ThreadTest01.jmx
+Starting standalone test @ 2025 Nov 2 14:00:24 GMT+08:00 (1762063224862)
+Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+summary +   4793 in 00:00:05 =  942.2/s Avg:  2702 Min:  1024 Max:  4875 Err:     0 (0.00%) Active: 5000 Started: 5000 Finished: 0
+summary +  63240 in 00:00:28 = 2262.9/s Avg:  2258 Min:   197 Max:  6857 Err:     0 (0.00%) Active: 0 Started: 5000 Finished: 5000
+summary =  68033 in 00:00:33 = 2059.5/s Avg:  2290 Min:   197 Max:  6857 Err:     0 (0.00%)
+Tidying up ...    @ 2025 Nov 2 14:00:57 GMT+08:00 (1762063257950)
+... end of run
+
+E:\LocalDev\vm\project\jar\jmeter>
+
+{
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 68033,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 2290.059088971528,
+    "medianResTime" : 2055.0,
+    "minResTime" : 197.0,
+    "maxResTime" : 6857.0,
+    "pct1ResTime" : 2894.0,
+    "pct2ResTime" : 3045.0,
+    "pct3ResTime" : 3334.0,
+    "throughput" : 2066.80438679102,
+    "receivedKBytesPerSec" : 471.1596472757238,
+    "sentKBytesPerSec" : 246.24036639502384
+  },
+  "HTTP Request" : {
+    "transaction" : "HTTP Request",
+    "sampleCount" : 68033,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 2290.059088971528,
+    "medianResTime" : 2055.0,
+    "minResTime" : 197.0,
+    "maxResTime" : 6857.0,
+    "pct1ResTime" : 2894.0,
+    "pct2ResTime" : 3045.0,
+    "pct3ResTime" : 3334.0,
+    "throughput" : 2066.80438679102,
+    "receivedKBytesPerSec" : 471.1596472757238,
+    "sentKBytesPerSec" : 246.24036639502384
+  }
+}
