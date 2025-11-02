@@ -11,7 +11,7 @@
 
   <groupId>space.wintersea</groupId>
   <artifactId>performace</artifactId>
-  <version>25-test-jetty</version>
+  <version>25-test-undertow</version>
   <name>performace</name>
   <description>performaceproject for Spring Boot</description>
 
@@ -33,7 +33,7 @@
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-jetty</artifactId>
+      <artifactId>spring-boot-starter-undertow</artifactId>
     </dependency>
 
     <dependency>
