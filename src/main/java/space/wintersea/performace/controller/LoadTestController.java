@@ -21,6 +21,7 @@ public class LoadTestController {
     long tmpRandN = count%50;
     long result = cpuIntensiveTask((int) tmpRandN);
 
+    System.out.println("start test");
     // 3, response result
     return Map.of(
         "message", "Java start test",
@@ -60,6 +61,7 @@ public class LoadTestController {
     // 1, wait I/O wait
     ioBoundTask();
 
+    System.out.println("end test");
     // 3, response result
     return Map.of(
         "message", "Java end test",
