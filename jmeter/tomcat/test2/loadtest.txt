@@ -1,0 +1,141 @@
+/usr/lib/jvm/jdk-25.0.1+8/bin/java -XX:+UseShenandoahGC -XX:ShenandoahGCMode=generational -XX:+UseCompactObjectHeaders -Xms2g -Xmx2g -Xlog:gc*:file=gc.log:time,uptime,pid,tags -jar performace-25-test-tomcat.jar
+
+jmeter test plan:
+Test Plan: ThreadTest01 Test Plan
+setup Thread Group:
+  Number of Threads(users): 1
+  Ramp-up period(seconds):  1
+  Loop count: 1
+  http request: http://192.168.159.129:8082/starttest
+Thread Group: Thread 5000 Test
+  Number of Threads(users): 5000
+  Ramp-up period(seconds):  1
+  Loop count: infinite
+    Same user on each iteration
+    Specify Thread lifetime:
+      Duration(seconds): 30
+teardown Thread Group:
+  Number of Threads(users): 1
+  Ramp-up period(seconds):  1
+  Loop count: 1
+  http request: http://192.168.159.129:8082/endtest
+
+
+----process 2 load test
+
+1)
+D:\tools\apache-jmeter-5.6.3\bin\jmeter -n -t ThreadTest01.jmx -l result_t0001.jtl -e -o reports
+
+1)
+E:\LocalDev\vm\project\jar\jmeter>D:\tools\apache-jmeter-5.6.3\bin\jmeter -n -t ThreadTest01.jmx -l result_t0001.jtl -e -o reports
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.thoughtworks.xstream.converters.reflection.SunUnsafeReflectionProvider (file:/D:/tools/apache-jmeter-5.6.3/lib/xstream-1.4.20.jar)
+WARNING: Please consider reporting this to the maintainers of class com.thoughtworks.xstream.converters.reflection.SunUnsafeReflectionProvider
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+Creating summariser <summary>
+Created the tree successfully using ThreadTest01.jmx
+Starting standalone test @ 2025 Nov 2 22:24:15 GMT+08:00 (1762093455448)
+Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+summary +  22042 in 00:00:15 = 1519.5/s Avg:  2757 Min:   190 Max: 10811 Err:     0 (0.00%) Active: 5000 Started: 5000 Finished: 0
+summary +  38317 in 00:00:19 = 1990.5/s Avg:  2514 Min:   123 Max: 17570 Err:     0 (0.00%) Active: 0 Started: 1 Finished: 1
+summary =  60359 in 00:00:34 = 1788.1/s Avg:  2603 Min:   123 Max: 17570 Err:     0 (0.00%)
+Tidying up ...    @ 2025 Nov 2 22:24:49 GMT+08:00 (1762093489256)
+... end of run
+
+
+{
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 60359,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 2603.4237976109284,
+    "medianResTime" : 2328.0,
+    "minResTime" : 123.0,
+    "maxResTime" : 17570.0,
+    "pct1ResTime" : 2809.0,
+    "pct2ResTime" : 3183.0,
+    "pct3ResTime" : 4036.0,
+    "throughput" : 1790.5900501349788,
+    "receivedKBytesPerSec" : 446.62375728662965,
+    "sentKBytesPerSec" : 213.33224945489334
+  },
+  "HTTP Request" : {
+    "transaction" : "HTTP Request",
+    "sampleCount" : 60359,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 2603.4237976109284,
+    "medianResTime" : 2328.0,
+    "minResTime" : 123.0,
+    "maxResTime" : 17570.0,
+    "pct1ResTime" : 2809.0,
+    "pct2ResTime" : 3183.0,
+    "pct3ResTime" : 4036.0,
+    "throughput" : 1790.5900501349788,
+    "receivedKBytesPerSec" : 446.62375728662965,
+    "sentKBytesPerSec" : 213.33224945489334
+  }
+}
+
+
+2)
+E:\LocalDev\vm\project\jar\jmeter>D:\tools\apache-jmeter-5.6.3\bin\jmeter -n -t ThreadTest01.jmx -l result_t0001.jtl -e -o reports
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.thoughtworks.xstream.converters.reflection.SunUnsafeReflectionProvider (file:/D:/tools/apache-jmeter-5.6.3/lib/xstream-1.4.20.jar)
+WARNING: Please consider reporting this to the maintainers of class com.thoughtworks.xstream.converters.reflection.SunUnsafeReflectionProvider
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+Creating summariser <summary>
+Created the tree successfully using ThreadTest01.jmx
+Starting standalone test @ 2025 Nov 2 22:26:59 GMT+08:00 (1762093619670)
+Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+summary +      2 in 00:00:00 =    4.6/s Avg:   187 Min:   128 Max:   247 Err:     0 (0.00%) Active: 1520 Started: 1520 Finished: 0
+summary +  60618 in 00:00:30 = 2031.0/s Avg:  2311 Min:   247 Max:  6378 Err:     0 (0.00%) Active: 4985 Started: 5000 Finished: 15
+summary =  60620 in 00:00:30 = 2002.0/s Avg:  2311 Min:   128 Max:  6378 Err:     0 (0.00%)
+summary +   6020 in 00:00:03 = 1838.7/s Avg:  2793 Min:   107 Max:  6362 Err:     0 (0.00%) Active: 0 Started: 1 Finished: 1
+summary =  66640 in 00:00:34 = 1986.1/s Avg:  2354 Min:   107 Max:  6378 Err:     0 (0.00%)
+Tidying up ...    @ 2025 Nov 2 22:27:33 GMT+08:00 (1762093653274)
+... end of run
+
+{
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 66640,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 2354.8552521007946,
+    "medianResTime" : 2414.5,
+    "minResTime" : 107.0,
+    "maxResTime" : 6378.0,
+    "pct1ResTime" : 3162.2000000000116,
+    "pct2ResTime" : 3645.0,
+    "pct3ResTime" : 4134.0,
+    "throughput" : 1988.6007579600728,
+    "receivedKBytesPerSec" : 496.04779377480526,
+    "sentKBytesPerSec" : 236.92337031124106
+  },
+  "HTTP Request" : {
+    "transaction" : "HTTP Request",
+    "sampleCount" : 66640,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 2354.8552521007946,
+    "medianResTime" : 2414.5,
+    "minResTime" : 107.0,
+    "maxResTime" : 6378.0,
+    "pct1ResTime" : 3162.2000000000116,
+    "pct2ResTime" : 3645.0,
+    "pct3ResTime" : 4134.0,
+    "throughput" : 1988.6007579600728,
+    "receivedKBytesPerSec" : 496.04779377480526,
+    "sentKBytesPerSec" : 236.92337031124106
+  }
+}
