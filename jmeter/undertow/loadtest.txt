@@ -1,5 +1,9 @@
 /usr/lib/jvm/jdk-25.0.1+8/bin/java -XX:+UseShenandoahGC -XX:ShenandoahGCMode=generational -XX:+UseCompactObjectHeaders -Xms2g -Xmx2g -Xlog:gc*:file=gc.log:time,uptime,pid,tags -jar performace-25-test-undertow.jar
 
+a) start test 10 before load test
+curl http://192.168.159.129:8082/test
+count: 10
+
 jmeter test plan:
 Test Plan: ThreadTest01 Test Plan
 Thread Group: Thread 5000 Test
@@ -12,8 +16,6 @@ Thread Group: Thread 5000 Test
 
 
 
-D:\tools\apache-jmeter-5.6.3\bin\jmeter -n -t ThreadTest01.jmx -l result_t0001.jtl -e -o reports
-
 E:\LocalDev\vm\project\jar\jmeter>D:\tools\apache-jmeter-5.6.3\bin\jmeter -n -t ThreadTest01.jmx -l result_t0001.jtl -e -o reports
 WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
 WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
@@ -25,47 +27,50 @@ WARNING: Please consider reporting this to the maintainers of class com.thoughtw
 WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 Creating summariser <summary>
 Created the tree successfully using ThreadTest01.jmx
-Starting standalone test @ 2025 Nov 2 14:00:24 GMT+08:00 (1762063224862)
+Starting standalone test @ 2025 Nov 2 21:46:00 GMT+08:00 (1762091160588)
 Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
-summary +   4793 in 00:00:05 =  942.2/s Avg:  2702 Min:  1024 Max:  4875 Err:     0 (0.00%) Active: 5000 Started: 5000 Finished: 0
-summary +  63240 in 00:00:28 = 2262.9/s Avg:  2258 Min:   197 Max:  6857 Err:     0 (0.00%) Active: 0 Started: 5000 Finished: 5000
-summary =  68033 in 00:00:33 = 2059.5/s Avg:  2290 Min:   197 Max:  6857 Err:     0 (0.00%)
-Tidying up ...    @ 2025 Nov 2 14:00:57 GMT+08:00 (1762063257950)
+summary +      1 in 00:00:01 =    0.9/s Avg:   978 Min:   978 Max:   978 Err:     0 (0.00%) Active: 5000 Started: 5000 Finished: 0
+summary +  44869 in 00:00:28 = 1588.1/s Avg:  3062 Min:   220 Max:  9269 Err:     0 (0.00%) Active: 5000 Started: 5000 Finished: 0
+summary =  44870 in 00:00:29 = 1528.2/s Avg:  3062 Min:   220 Max:  9269 Err:     0 (0.00%)
+summary +   7216 in 00:00:05 = 1521.7/s Avg:  2970 Min:   747 Max:  5053 Err:     0 (0.00%) Active: 0 Started: 5000 Finished: 5000
+summary =  52086 in 00:00:34 = 1527.3/s Avg:  3049 Min:   220 Max:  9269 Err:     0 (0.00%)
+Tidying up ...    @ 2025 Nov 2 21:46:34 GMT+08:00 (1762091194742)
 ... end of run
+
 
 E:\LocalDev\vm\project\jar\jmeter>
 
 {
   "Total" : {
     "transaction" : "Total",
-    "sampleCount" : 68033,
+    "sampleCount" : 52086,
     "errorCount" : 0,
     "errorPct" : 0.0,
-    "meanResTime" : 2290.059088971528,
-    "medianResTime" : 2055.0,
-    "minResTime" : 197.0,
-    "maxResTime" : 6857.0,
-    "pct1ResTime" : 2894.0,
-    "pct2ResTime" : 3045.0,
-    "pct3ResTime" : 3334.0,
-    "throughput" : 2066.80438679102,
-    "receivedKBytesPerSec" : 471.1596472757238,
-    "sentKBytesPerSec" : 246.24036639502384
+    "meanResTime" : 3049.5491110854928,
+    "medianResTime" : 2649.5,
+    "minResTime" : 220.0,
+    "maxResTime" : 9269.0,
+    "pct1ResTime" : 3600.0,
+    "pct2ResTime" : 3814.0,
+    "pct3ResTime" : 4809.0,
+    "throughput" : 1532.4820524891138,
+    "receivedKBytesPerSec" : 349.2803009058344,
+    "sentKBytesPerSec" : 182.5808695348358
   },
   "HTTP Request" : {
     "transaction" : "HTTP Request",
-    "sampleCount" : 68033,
+    "sampleCount" : 52086,
     "errorCount" : 0,
     "errorPct" : 0.0,
-    "meanResTime" : 2290.059088971528,
-    "medianResTime" : 2055.0,
-    "minResTime" : 197.0,
-    "maxResTime" : 6857.0,
-    "pct1ResTime" : 2894.0,
-    "pct2ResTime" : 3045.0,
-    "pct3ResTime" : 3334.0,
-    "throughput" : 2066.80438679102,
-    "receivedKBytesPerSec" : 471.1596472757238,
-    "sentKBytesPerSec" : 246.24036639502384
+    "meanResTime" : 3049.5491110854928,
+    "medianResTime" : 2649.5,
+    "minResTime" : 220.0,
+    "maxResTime" : 9269.0,
+    "pct1ResTime" : 3600.0,
+    "pct2ResTime" : 3814.0,
+    "pct3ResTime" : 4809.0,
+    "throughput" : 1532.4820524891138,
+    "receivedKBytesPerSec" : 349.2803009058344,
+    "sentKBytesPerSec" : 182.5808695348358
   }
 }

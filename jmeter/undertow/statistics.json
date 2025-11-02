@@ -1,34 +1,34 @@
-{
-  "Total" : {
-    "transaction" : "Total",
-    "sampleCount" : 68033,
-    "errorCount" : 0,
-    "errorPct" : 0.0,
-    "meanResTime" : 2290.059088971528,
-    "medianResTime" : 2055.0,
-    "minResTime" : 197.0,
-    "maxResTime" : 6857.0,
-    "pct1ResTime" : 2894.0,
-    "pct2ResTime" : 3045.0,
-    "pct3ResTime" : 3334.0,
-    "throughput" : 2066.80438679102,
-    "receivedKBytesPerSec" : 471.1596472757238,
-    "sentKBytesPerSec" : 246.24036639502384
-  },
-  "HTTP Request" : {
-    "transaction" : "HTTP Request",
-    "sampleCount" : 68033,
-    "errorCount" : 0,
-    "errorPct" : 0.0,
-    "meanResTime" : 2290.059088971528,
-    "medianResTime" : 2055.0,
-    "minResTime" : 197.0,
-    "maxResTime" : 6857.0,
-    "pct1ResTime" : 2894.0,
-    "pct2ResTime" : 3045.0,
-    "pct3ResTime" : 3334.0,
-    "throughput" : 2066.80438679102,
-    "receivedKBytesPerSec" : 471.1596472757238,
-    "sentKBytesPerSec" : 246.24036639502384
-  }
-}
+//{
+//  "Total" : {
+//    "transaction" : "Total",
+//    "sampleCount" : 52086,
+//    "errorCount" : 0,
+//    "errorPct" : 0.0,
+//    "meanResTime" : 3049.5491110854928,
+//    "medianResTime" : 2649.5,
+//    "minResTime" : 220.0,
+//    "maxResTime" : 9269.0,
+//    "pct1ResTime" : 3600.0,
+//    "pct2ResTime" : 3814.0,
+//    "pct3ResTime" : 4809.0,
+//    "throughput" : 1532.4820524891138,
+//    "receivedKBytesPerSec" : 349.2803009058344,
+//    "sentKBytesPerSec" : 182.5808695348358
+//  },
+//  "HTTP Request" : {
+//    "transaction" : "HTTP Request",
+//    "sampleCount" : 52086,
+//    "errorCount" : 0,
+//    "errorPct" : 0.0,
+//    "meanResTime" : 3049.5491110854928,
+//    "medianResTime" : 2649.5,
+//    "minResTime" : 220.0,
+//    "maxResTime" : 9269.0,
+//    "pct1ResTime" : 3600.0,
+//    "pct2ResTime" : 3814.0,
+//    "pct3ResTime" : 4809.0,
+//    "throughput" : 1532.4820524891138,
+//    "receivedKBytesPerSec" : 349.2803009058344,
+//    "sentKBytesPerSec" : 182.5808695348358
+//  }
+//}

@@ -1,0 +1,83 @@
+/usr/lib/jvm/jdk-25.0.1+8/bin/java -XX:+UseShenandoahGC -XX:ShenandoahGCMode=generational -XX:+UseCompactObjectHeaders -Xms2g -Xmx2g -Xlog:gc*:file=gc.log:time,uptime,pid,tags -jar performace-25-test-jetty.jar
+
+a) start test 10 before load test
+curl http://192.168.159.129:8082/test
+count: 10
+
+jmeter test plan:
+Test Plan: ThreadTest01 Test Plan
+Thread Group: Thread 5000 Test
+  Number of Threads(users): 5000
+  Ramp-up period(seconds):  1
+  Loop count: infinite
+    Same user on each iteration
+    Specify Thread lifetime:
+      Duration(seconds): 30
+
+
+
+D:\tools\apache-jmeter-5.6.3\bin\jmeter -n -t ThreadTest01.jmx -l result_t0001.jtl -e -o reports
+
+E:\LocalDev\vm\project\jar\jmeter>D:\tools\apache-jmeter-5.6.3\bin\jmeter -n -t ThreadTest01.jmx -l result_t0001.jtl -e -o reports
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.thoughtworks.xstream.converters.reflection.SunUnsafeReflectionProvider (file:/D:/tools/apache-jmeter-5.6.3/lib/xstream-1.4.20.jar)
+WARNING: Please consider reporting this to the maintainers of class com.thoughtworks.xstream.converters.reflection.SunUnsafeReflectionProvider
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+Creating summariser <summary>
+Created the tree successfully using ThreadTest01.jmx
+Starting standalone test @ 2025 Nov 2 21:54:58 GMT+08:00 (1762091698391)
+Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+summary +    944 in 00:00:02 =  604.7/s Avg:   559 Min:   230 Max:  1231 Err:     0 (0.00%) Active: 5000 Started: 5000 Finished: 0
+summary +  57098 in 00:00:30 = 1903.1/s Avg:  2602 Min:   169 Max: 21220 Err:  1209 (2.12%) Active: 2583 Started: 5000 Finished: 2417
+summary =  58042 in 00:00:32 = 1838.9/s Avg:  2569 Min:   169 Max: 21220 Err:  1209 (2.08%)
+summary +   2582 in 00:00:01 = 1756.5/s Avg:  2614 Min:  1972 Max:  3149 Err:     0 (0.00%) Active: 0 Started: 5000 Finished: 5000
+summary =  60624 in 00:00:33 = 1835.3/s Avg:  2571 Min:   169 Max: 21220 Err:  1209 (1.99%)
+Tidying up ...    @ 2025 Nov 2 21:55:31 GMT+08:00 (1762091731475)
+... end of run
+
+1762091698575,19468,HTTP Request,200,OK,Thread 5000 Test 1-343,text,true,,192,122,5000,5000,http://192.168.159.129:8082/test,19456,0,7162
+1762091698857,19190,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。,Thread 5000 Test 1-2786,text,false,,3005,0,5000,5000,http://192.168.159.129:8082/test,0,0,25
+1762091698857,19190,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。,Thread 5000 Test 1-2787,text,false,,3005,0,5000,5000,http://192.168.159.129:8082/test,0,0,25
+
+
+
+E:\LocalDev\vm\project\jar\jmeter>
+
+{
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 68033,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 2290.059088971528,
+    "medianResTime" : 2055.0,
+    "minResTime" : 197.0,
+    "maxResTime" : 6857.0,
+    "pct1ResTime" : 2894.0,
+    "pct2ResTime" : 3045.0,
+    "pct3ResTime" : 3334.0,
+    "throughput" : 2066.80438679102,
+    "receivedKBytesPerSec" : 471.1596472757238,
+    "sentKBytesPerSec" : 246.24036639502384
+  },
+  "HTTP Request" : {
+    "transaction" : "HTTP Request",
+    "sampleCount" : 68033,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 2290.059088971528,
+    "medianResTime" : 2055.0,
+    "minResTime" : 197.0,
+    "maxResTime" : 6857.0,
+    "pct1ResTime" : 2894.0,
+    "pct2ResTime" : 3045.0,
+    "pct3ResTime" : 3334.0,
+    "throughput" : 2066.80438679102,
+    "receivedKBytesPerSec" : 471.1596472757238,
+    "sentKBytesPerSec" : 246.24036639502384
+  }
+}

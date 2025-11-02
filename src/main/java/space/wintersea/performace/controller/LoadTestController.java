@@ -9,6 +9,28 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoadTestController {
   private static final AtomicLong reqCount = new AtomicLong(0);
 
+  @GetMapping("/starttest")
+  public Map<String, Object> startTest() {
+    reqCount.set(0);
+    long count = 10;
+
+    // 1, wait I/O wait
+    ioBoundTask();
+
+    // 2, simulate cpu calculation
+    long tmpRandN = count%50;
+    long result = cpuIntensiveTask((int) tmpRandN);
+
+    // 3, response result
+    return Map.of(
+        "message", "Java start test",
+        "count", count,
+        "hash", result
+    );
+
+  }
+
+
   @GetMapping("/test")
   public Map<String, Object> handleTest() {
     long count = reqCount.getAndAdd(1);
@@ -25,6 +47,24 @@ public class LoadTestController {
         "message", "Processed successful by Java",
         "count", count,
         "hash", result
+    );
+
+  }
+
+
+  @GetMapping("/endtest")
+  public Map<String, Object> endTest() {
+    reqCount.set(0);
+    long count = 1;
+
+    // 1, wait I/O wait
+    ioBoundTask();
+
+    // 3, response result
+    return Map.of(
+        "message", "Java end test",
+        "count", count,
+        "hash", 1
     );
 
   }

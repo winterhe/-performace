@@ -1,5 +1,10 @@
 /usr/lib/jvm/jdk-25.0.1+8/bin/java -XX:+UseShenandoahGC -XX:ShenandoahGCMode=generational -XX:+UseCompactObjectHeaders -Xms2g -Xmx2g -Xlog:gc*:file=gc.log:time,uptime,pid,tags -jar performace-25-test-tomcat.jar
 
+a) start test 10 before load test
+curl http://192.168.159.129:8082/test
+count: 10
+
+
 jmeter test plan:
 Test Plan: ThreadTest01 Test Plan
 Thread Group: Thread 5000 Test
@@ -25,47 +30,46 @@ WARNING: Please consider reporting this to the maintainers of class com.thoughtw
 WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 Creating summariser <summary>
 Created the tree successfully using ThreadTest01.jmx
-Starting standalone test @ 2025 Nov 2 13:35:04 GMT+08:00 (1762061704126)
+Starting standalone test @ 2025 Nov 2 21:50:46 GMT+08:00 (1762091446079)
 Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
-summary +      1 in 00:00:01 =    0.8/s Avg:  1036 Min:  1036 Max:  1036 Err:     0 (0.00%) Active: 5000 Started: 5000 Finished: 0
-summary +  50639 in 00:00:25 = 2057.2/s Avg:  2381 Min:  1000 Max: 11078 Err:     0 (0.00%) Active: 5000 Started: 5000 Finished: 0
-summary =  50640 in 00:00:26 = 1961.6/s Avg:  2381 Min:  1000 Max: 11078 Err:     0 (0.00%)
-summary +  15941 in 00:00:07 = 2267.2/s Avg:  2193 Min:  1196 Max:  6557 Err:     0 (0.00%) Active: 0 Started: 5000 Finished: 5000
-summary =  66581 in 00:00:33 = 2026.9/s Avg:  2336 Min:  1000 Max: 11078 Err:     0 (0.00%)
-Tidying up ...    @ 2025 Nov 2 13:35:37 GMT+08:00 (1762061737032)
+summary +  19272 in 00:00:14 = 1389.2/s Avg:  2412 Min:   344 Max: 10051 Err:     0 (0.00%) Active: 5000 Started: 5000 Finished: 0
+summary +  45270 in 00:00:19 = 2408.4/s Avg:  2398 Min:  1007 Max: 21122 Err:     0 (0.00%) Active: 0 Started: 5000 Finished: 5000
+summary =  64542 in 00:00:33 = 1975.6/s Avg:  2402 Min:   344 Max: 21122 Err:     0 (0.00%)
+Tidying up ...    @ 2025 Nov 2 21:51:18 GMT+08:00 (1762091478800)
 ... end of run
+
 
 {
   "Total" : {
     "transaction" : "Total",
-    "sampleCount" : 66581,
+    "sampleCount" : 64542,
     "errorCount" : 0,
     "errorPct" : 0.0,
-    "meanResTime" : 2336.470419489011,
-    "medianResTime" : 2212.0,
-    "minResTime" : 1000.0,
-    "maxResTime" : 11078.0,
-    "pct1ResTime" : 2278.0,
-    "pct2ResTime" : 2362.0,
-    "pct3ResTime" : 3779.970000000005,
-    "throughput" : 2035.7426771846146,
-    "receivedKBytesPerSec" : 507.80817047139664,
-    "sentKBytesPerSec" : 242.53965489894819
+    "meanResTime" : 2402.9657277431797,
+    "medianResTime" : 1958.0,
+    "minResTime" : 344.0,
+    "maxResTime" : 21122.0,
+    "pct1ResTime" : 2872.0,
+    "pct2ResTime" : 3039.0,
+    "pct3ResTime" : 3208.0,
+    "throughput" : 1982.857142857143,
+    "receivedKBytesPerSec" : 494.6076048867128,
+    "sentKBytesPerSec" : 236.2388392857143
   },
   "HTTP Request" : {
     "transaction" : "HTTP Request",
-    "sampleCount" : 66581,
+    "sampleCount" : 64542,
     "errorCount" : 0,
     "errorPct" : 0.0,
-    "meanResTime" : 2336.470419489011,
-    "medianResTime" : 2212.0,
-    "minResTime" : 1000.0,
-    "maxResTime" : 11078.0,
-    "pct1ResTime" : 2278.0,
-    "pct2ResTime" : 2362.0,
-    "pct3ResTime" : 3779.970000000005,
-    "throughput" : 2035.7426771846146,
-    "receivedKBytesPerSec" : 507.80817047139664,
-    "sentKBytesPerSec" : 242.53965489894819
+    "meanResTime" : 2402.9657277431797,
+    "medianResTime" : 1958.0,
+    "minResTime" : 344.0,
+    "maxResTime" : 21122.0,
+    "pct1ResTime" : 2872.0,
+    "pct2ResTime" : 3039.0,
+    "pct3ResTime" : 3208.0,
+    "throughput" : 1982.857142857143,
+    "receivedKBytesPerSec" : 494.6076048867128,
+    "sentKBytesPerSec" : 236.2388392857143
   }
 }
